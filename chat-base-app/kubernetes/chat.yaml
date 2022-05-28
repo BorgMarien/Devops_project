@@ -14,7 +14,7 @@ spec:
       containers:
       - name: chat
         imagePullPolicy: IfNotPresent
-        image: thomasagterhuis/chatapi:latest
+        image: borgmarien/chat_api:latest
         ports:
           - containerPort: 3000
             name: http-web-svc

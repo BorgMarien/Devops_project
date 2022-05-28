@@ -14,7 +14,7 @@ spec:
       containers:
       - name: auth
         imagePullPolicy: IfNotPresent
-        image: thomasagterhuis/authapi:latest
+        image: borgmarien/auth_api:latest
         ports:
           - containerPort: 3000
             name: http-web-svc
