@@ -1,25 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
-  labels:
-    app: nginx
+  name: chat
 spec:
-  replicas: 3
   selector:
     matchLabels:
-      app: nginx
+      app: chat
   template:
     metadata:
       labels:
-        app: nginx
+        app: chat
     spec:
       containers:
-      - name: nginx
-        image: borgmarien/chat_api:latest
+      - name: chat
+        imagePullPolicy: IfNotPresent
+        image: thomasagterhuis/chatapi:latest
         ports:
-        - containerPort: 80
-        
+          - containerPort: 3000
+            name: http-web-svc
 ---
 apiVersion: v1
 kind: Service
@@ -29,7 +27,7 @@ spec:
   selector:
     app: chat
   ports:
-  - name: chat_api
+  - name: chat
     protocol: TCP
     port: 80
     targetPort: http-web-svc
