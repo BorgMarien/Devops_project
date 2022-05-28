@@ -24,10 +24,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: static
+  name: chat
 spec:
   selector:
-    app: nginx
+    app: chat
   ports:
   - name: chat_api
     protocol: TCP
