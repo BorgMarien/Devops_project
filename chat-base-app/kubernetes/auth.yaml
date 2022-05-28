@@ -1,25 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
-  labels:
-    app: nginx
+  name: auth
 spec:
-  replicas: 3
   selector:
     matchLabels:
-      app: nginx
+      app: auth
   template:
     metadata:
       labels:
-        app: nginx
+        app: auth
     spec:
       containers:
-      - name: nginx
-        image: borgmarien/auth_api:latest
+      - name: auth
+        imagePullPolicy: IfNotPresent
+        image: thomasagterhuis/authapi:latest
         ports:
-        - containerPort: 80
-        
+          - containerPort: 3000
+            name: http-web-svc
 ---
 apiVersion: v1
 kind: Service
@@ -29,7 +27,7 @@ spec:
   selector:
     app: auth
   ports:
-  - name: auth_api
+  - name: auth
     protocol: TCP
     port: 80
     targetPort: http-web-svc
